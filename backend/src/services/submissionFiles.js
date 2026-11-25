@@ -71,7 +71,7 @@ export async function inspectFile(file) {
   }
   const extensionType = { pdf: 'PDF', docx: 'DOCX', jpg: 'JPG', jpeg: 'JPG', png: 'PNG', zip: 'ZIP' }[extension]
   if (!type || type !== extensionType || !file.size) throw submissionError(400, `File contents do not match a supported format: ${originalName || 'unnamed file'}.`)
-  return { originalName, type, mimeType: { PDF: 'application/pdf', DOCX: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', JPG: 'image/jpeg', PNG: 'image/png', ZIP: 'application/zip' }[type], size: file.size, storagePath: path.relative(uploadRoot, file.path) }
+  return { originalName, type, mimeType: { PDF: 'application/pdf', DOCX: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', JPG: 'image/jpeg', PNG: 'image/png', ZIP: 'application/zip' }[type], size: file.size, storagePath: path.relative(uploadRoot, file.path).replaceAll('\\', '/') }
 }
 
 export function checkCompliance(assignment, files, submittedAt) {
