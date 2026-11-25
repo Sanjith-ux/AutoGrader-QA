@@ -1,0 +1,24 @@
+{
+  "id": "BB-PW-11",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:46.515Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:46 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/register",
+  "input": {
+    "name": "QA Black Box BB-PW-11",
+    "email": "bb-pw-11.bb-20261125T131845@example.test",
+    "role": "student"
+  },
+  "expectedStatus": 400,
+  "status": 400,
+  "response": {
+    "message": "Validation failed.",
+    "errors": [
+      "Password is required."
+    ]
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

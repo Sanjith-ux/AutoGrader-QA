@@ -1,0 +1,10 @@
+{
+  "timestampUTC": "2026-11-25T14:52:46.630572+00:00",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/assignments",
+  "status": 403,
+  "body": {
+    "message": "You do not have permission to access this resource."
+  },
+  "credentialSource": "S1-only token privately obtained using local HTTP login because Safari Web Inspector shortcut was unavailable; student identity verified. No lecturer token used. Routine session setup, not a repeated authentication test."
+}

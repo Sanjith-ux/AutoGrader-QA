@@ -1,0 +1,10 @@
+{
+  "id": "M1-AUTH-05",
+  "actual": "S1 incorrect password displayed Invalid email or password.; remained on login without dashboard access.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T13:38:58.070Z",
+  "evidence": [
+    "M1-AUTH-05-invalid-login.png"
+  ]
+}

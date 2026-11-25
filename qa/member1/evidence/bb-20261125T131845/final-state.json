@@ -1,0 +1,26 @@
+{
+  "timestampUTC": "2026-11-25T13:23:20.404Z",
+  "database": "labtrack_qa_member1",
+  "counts": {
+    "users": 6,
+    "assignments": 11,
+    "submissions": 2,
+    "labsessions": 0
+  },
+  "submissionSizes": [
+    [
+      5242880
+    ],
+    [
+      5242879
+    ]
+  ],
+  "privateStorage": {
+    "root": "/Users/sanjithab/Desktop/AutoGrader & lab Submissiton Portal /qa/member1/runtime/submissions",
+    "fileCount": 2,
+    "fileSizes": [
+      5242880,
+      5242879
+    ]
+  }
+}

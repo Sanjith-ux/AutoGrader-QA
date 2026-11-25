@@ -1,0 +1,23 @@
+{
+  "id": "M1-ASG-07",
+  "run": "20261125T190120",
+  "actual": "With all BASE fields complete including F, PDF only, Report, 5 MB and late disabled, Save as Draft rejected marks 0 with Enter total marks as a whole number from 1 to 1000. Cancel returned to empty lecturer assignment list. Initial incomplete date-entry observation is retained in JSON; full-date retry produced only the marks validation.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:34:29.605904+00:00",
+  "evidence": [
+    "M1-ASG-07-zero-total-marks-r2.png"
+  ],
+  "priorObservations": [
+    {
+      "id": "M1-ASG-07",
+      "actual": "Attempted in Safari: total marks 0 displayed Enter total marks as a whole number from 1 to 1000.; Cancel returned to empty lecturer list. Deadline visually showed F but form also reported Choose a deadline, so valid BASE deadline prerequisite is not yet established. Retest pending browser date entry recovery.",
+      "status": "Blocked",
+      "method": "Native Safari browser via CUA",
+      "timestampUTC": "2026-11-25T14:33:57.792082+00:00",
+      "evidence": [
+        "M1-ASG-07-zero-total-marks.png"
+      ]
+    }
+  ]
+}

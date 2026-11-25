@@ -1,0 +1,17 @@
+{
+  "verifiedUTC": "2026-11-25T13:18:45.463Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:45 GMT+5:30",
+  "database": "labtrack_qa_member1",
+  "mongoPort": 27028,
+  "bindIp": "127.0.0.1",
+  "dbPath": "/Users/sanjithab/Desktop/AutoGrader & lab Submissiton Portal /qa/member1/runtime/mongodb",
+  "counts": {
+    "users": 0,
+    "assignments": 0,
+    "submissions": 0
+  },
+  "apiHealth": {
+    "status": 200
+  },
+  "frontendStatus": 200
+}

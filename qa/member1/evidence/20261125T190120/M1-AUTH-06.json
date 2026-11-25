@@ -1,0 +1,11 @@
+{
+  "id": "M1-AUTH-06",
+  "actual": "S1 logged in to /student-dashboard, opened Assignments and retained authenticated access after refresh; logout followed by direct /student/assignments navigation returned to login. Original S1 credentials remained usable.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T13:39:17.890Z",
+  "evidence": [
+    "M1-AUTH-06-restored-session.png",
+    "M1-AUTH-06-logged-out.png"
+  ]
+}

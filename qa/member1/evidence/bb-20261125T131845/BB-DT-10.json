@@ -1,0 +1,25 @@
+{
+  "id": "BB-DT-10",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:20:26.930Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:50:26 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/login",
+  "input": {
+    "email": "bb-pw-04.bb-20261125T131845@example.test",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 8,
+      "utf8Bytes": 8
+    }
+  },
+  "expectedStatus": 429,
+  "status": 429,
+  "response": {
+    "message": "Too many failed sign-in attempts. Please try again later."
+  },
+  "retryAfter": "800",
+  "result": "Passed"
+}

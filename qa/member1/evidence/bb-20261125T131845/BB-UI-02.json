@@ -1,0 +1,10 @@
+{
+  "id": "BB-UI-02",
+  "channel": "Native Brave browser through CUA",
+  "timestampUTC": "2026-11-25T13:19:57.315Z",
+  "input": "Valid student credentials; Student selected",
+  "expected": "Student dashboard",
+  "actual": "Navigated to /student-dashboard with Student navigation",
+  "result": "Passed",
+  "evidence": "BB-UI-02-student-login.png"
+}

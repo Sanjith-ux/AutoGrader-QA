@@ -1,0 +1,10 @@
+{
+  "id": "M1-AUTH-01",
+  "actual": "S1 registration returned to login with Your account was created. Sign in to continue.; no automatic sign-in.",
+  "status": "Passed",
+  "method": "Native Brave browser via CUA",
+  "timestampUTC": "2026-11-25T13:32:04.513Z",
+  "evidence": [
+    "M1-AUTH-01-student-created.png"
+  ]
+}

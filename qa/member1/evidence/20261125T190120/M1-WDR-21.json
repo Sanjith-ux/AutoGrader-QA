@@ -1,0 +1,13 @@
+{
+  "id": "M1-WDR-21",
+  "run": "20261125T190120",
+  "actual": "L1 inspected withdrawn B under Withdrawn submissions (audit), filtered MAIN, confirmed reason/event. Restored with Synthetic QA attempt restored. Active submissions showed B Awaiting Review with original report-second.pdf, failed Report-label compliance and no marks. Review audit retained withdrawal 20:17:16 and restoration 20:18:50 with actors/reasons. S1 fresh My Submissions showed active Awaiting Review B, original timestamp/file/compliance, no published mark/feedback, withdrawal action available again.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:49:25.155103+00:00",
+  "evidence": [
+    "M1-WDR-21-withdrawal-audit-before.png",
+    "M1-WDR-21-restored-B-audit.png",
+    "M1-WDR-21-student-active-B.png"
+  ]
+}

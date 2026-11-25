@@ -1,0 +1,10 @@
+{
+  "id": "BB-UI-03",
+  "channel": "Native Brave browser through CUA",
+  "timestampUTC": "2026-11-25T13:20:15.935Z",
+  "input": "Valid lecturer credentials; Lecturer selected",
+  "expected": "Lecturer dashboard",
+  "actual": "Navigated to /lecturer-dashboard with Lecturer navigation",
+  "result": "Passed",
+  "evidence": "BB-UI-03-lecturer-login.png"
+}

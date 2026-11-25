@@ -1,0 +1,33 @@
+{
+  "timestampUTC": "2026-11-25T14:56:17.518937+00:00",
+  "run": "20261125T190120",
+  "branch": "qa/member-1",
+  "commit": "8660e35a335e639e6fada4f434a3f3c468279ffd",
+  "browser": "Safari 27.0",
+  "frontend": "http://127.0.0.1:5173",
+  "api": "http://127.0.0.1:5002/api",
+  "readiness": {
+    "health": 200,
+    "frontendServedAPIBase": "http://127.0.0.1:5002/api",
+    "backendMongoConnections": "lsof observed node PID 8302 connected to 127.0.0.1:27028",
+    "mongoLogOptions": {
+      "bindIp": "127.0.0.1",
+      "port": 27028,
+      "dbPath": "/Users/sanjithab/Desktop/AutoGrader & lab Submissiton Portal /qa/member1/runtime/mongodb"
+    },
+    "database": "labtrack_qa_member1",
+    "uploadRoot": "/Users/sanjithab/Desktop/AutoGrader & lab Submissiton Portal /qa/member1/runtime/submissions"
+  },
+  "recovery": "Original RUN/accounts/F/P/D/fixtures reused. No service restart/reset or configuration change. Six completed authentication cases not repeated.",
+  "dates": {
+    "F": "2026-12-02T19:01:00+05:30",
+    "P": "2026-11-24T12:00:00+05:30",
+    "D": "2026-12-02"
+  },
+  "procedureAdaptations": [
+    "Safari date fields required explicit AM/PM completion; incomplete initial ASG-07 observation retained in JSON before complete retry.",
+    "Safari native file picker initially failed to confirm selection; reopening with list view allowed actual UI uploads.",
+    "Browser zoom reduced to expose lecturer table actions.",
+    "RBAC-22 used fresh S1-only local HTTP login token because Safari inspector shortcut unavailable; sanitized 403 record retained and temporary credentials cleared."
+  ]
+}

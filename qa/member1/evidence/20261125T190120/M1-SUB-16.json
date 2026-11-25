@@ -1,0 +1,12 @@
+{
+  "id": "M1-SUB-16",
+  "run": "20261125T190120",
+  "actual": "Prepared OVERDUE through L1 UI with BASE, past P=24 Nov 2026 12:00, Published, late disabled; ID 6b06f40b04f568329bd47c50. S1 details showed past deadline; selected report-valid.pdf labelled Report. UI stated Late submissions are not allowed for this assignment. Submit assignment disabled. My Submissions contained only MAIN A/B and no OVERDUE attempt. UI-only deadline coverage.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:44:01.306752+00:00",
+  "evidence": [
+    "fixture-OVERDUE-published.png",
+    "M1-SUB-16-late-blocked.png"
+  ]
+}

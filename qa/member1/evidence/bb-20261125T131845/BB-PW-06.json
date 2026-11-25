@@ -1,0 +1,33 @@
+{
+  "id": "BB-PW-06",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:45.914Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:46 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/register",
+  "input": {
+    "name": "QA Black Box BB-PW-06",
+    "email": "bb-pw-06.bb-20261125T131845@example.test",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 71,
+      "utf8Bytes": 71
+    },
+    "role": "student"
+  },
+  "expectedStatus": 201,
+  "status": 201,
+  "response": {
+    "user": {
+      "id": "6b06e03504f568329bd47a64",
+      "name": "QA Black Box BB-PW-06",
+      "email": "bb-pw-06.bb-20261125t131845@example.test",
+      "role": "student",
+      "createdAt": "2026-11-25T13:18:45.915Z"
+    }
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

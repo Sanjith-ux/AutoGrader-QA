@@ -1,0 +1,13 @@
+{
+  "id": "BB-UI-01",
+  "channel": "Native Brave browser through CUA",
+  "timestampUTC": "2026-11-25T13:19:27.319Z",
+  "input": "Valid student credentials; Lecturer selected",
+  "expected": "Remain on login with role mismatch message; protected student navigation requires login",
+  "actual": "This account is registered as a student. Select student to continue. Protected /student/assignments navigation returned to login.",
+  "result": "Passed",
+  "evidence": [
+    "BB-UI-01-role-mismatch.png",
+    "BB-UI-01-protected-redirect.png"
+  ]
+}

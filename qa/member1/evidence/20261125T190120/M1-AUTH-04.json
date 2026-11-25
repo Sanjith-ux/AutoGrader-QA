@@ -1,0 +1,10 @@
+{
+  "id": "M1-AUTH-04",
+  "actual": "Seven-character matching password rejected with Password must be at least 8 characters.; registration form retained.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T13:38:44.292Z",
+  "evidence": [
+    "M1-AUTH-04-short-password.png"
+  ]
+}

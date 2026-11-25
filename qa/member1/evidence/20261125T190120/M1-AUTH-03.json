@@ -1,0 +1,10 @@
+{
+  "id": "M1-AUTH-03",
+  "actual": "Duplicate S1 email rejected with An account with this email already exists.; original account retained for AUTH-06 verification.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T13:38:37.315Z",
+  "evidence": [
+    "M1-AUTH-03-duplicate-email.png"
+  ]
+}

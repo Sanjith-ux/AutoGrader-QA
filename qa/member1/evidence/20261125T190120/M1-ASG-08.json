@@ -1,0 +1,12 @@
+{
+  "id": "M1-ASG-08",
+  "run": "20261125T190120",
+  "actual": "L1 saved QA Main 20261125T190120 as Draft with BASE settings and late submissions disabled; refresh retained Draft and deadline 2 Dec 2026 19:01. S1 All assignments list showed only the separate black-box published fixture, with MAIN absent.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:35:09.979743+00:00",
+  "evidence": [
+    "M1-ASG-08-draft-lecturer.png",
+    "M1-ASG-08-hidden-student.png"
+  ]
+}

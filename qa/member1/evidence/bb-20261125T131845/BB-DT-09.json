@@ -1,0 +1,33 @@
+{
+  "id": "BB-DT-09",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.429Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/login",
+  "input": {
+    "email": "bb-pw-04.bb-20261125T131845@example.test",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 8,
+      "utf8Bytes": 8
+    },
+    "role": "lecturer"
+  },
+  "expectedStatus": 200,
+  "status": 200,
+  "response": {
+    "token": "[REDACTED]",
+    "user": {
+      "id": "6b06e03504f568329bd47a5e",
+      "name": "QA Black Box BB-PW-04",
+      "email": "bb-pw-04.bb-20261125t131845@example.test",
+      "role": "student",
+      "createdAt": "2026-11-25T13:18:45.512Z"
+    }
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

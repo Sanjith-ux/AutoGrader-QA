@@ -1,0 +1,100 @@
+{
+  "id": "BB-FILE-02",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.200Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/submissions/assignments/6b06e03704f568329bd47aad",
+  "input": {
+    "fileName": "BB-FILE-02.pdf",
+    "bytes": 5242880,
+    "content": "existing synthetic PDF padded with spaces",
+    "attachment": "Report",
+    "configuredLimitBytes": 5242880
+  },
+  "expectedStatus": 201,
+  "status": 201,
+  "response": {
+    "submission": {
+      "requirements": {
+        "deadline": "2026-12-02T13:18:47.125Z",
+        "allowedFileTypes": [
+          "PDF"
+        ],
+        "maxFileSizeMB": 5,
+        "requiredFiles": [
+          "Report"
+        ],
+        "lateSubmissionAllowed": false,
+        "totalMarks": 100
+      },
+      "compliance": {
+        "checks": {
+          "deadline": {
+            "passed": true,
+            "message": "Submitted on or before the deadline."
+          },
+          "fileType": {
+            "passed": true,
+            "message": "Accepted formats: PDF. File contents and extensions were checked."
+          },
+          "fileSize": {
+            "passed": true,
+            "message": "Maximum 5 MB per file."
+          },
+          "requiredFiles": {
+            "passed": true,
+            "message": "All required attachment labels are present."
+          }
+        },
+        "passed": true
+      },
+      "_id": "6b06e03704f568329bd47abe",
+      "student": {
+        "_id": "6b06e03504f568329bd47a5e",
+        "name": "QA Black Box BB-PW-04",
+        "email": "bb-pw-04.bb-20261125t131845@example.test"
+      },
+      "assignment": {
+        "_id": "6b06e03704f568329bd47aad",
+        "title": "QA File Boundary bb-20261125T131845",
+        "module": "EC4206",
+        "deadline": "2026-12-02T13:18:47.125Z",
+        "totalMarks": 100,
+        "status": "Published"
+      },
+      "files": [
+        {
+          "originalName": "BB-FILE-02.pdf",
+          "type": "PDF",
+          "mimeType": "application/pdf",
+          "size": 5242880,
+          "attachment": "Report",
+          "_id": "6b06e03704f568329bd47abf"
+        }
+      ],
+      "submittedAt": "2026-11-25T13:18:47.207Z",
+      "timing": "On time",
+      "reviewStatus": "Awaiting Review",
+      "marks": null,
+      "feedback": "",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "withdrawnAt": null,
+      "withdrawnBy": null,
+      "withdrawalReason": "",
+      "withdrawalHistory": [],
+      "createdAt": "2026-11-25T13:18:47.208Z",
+      "updatedAt": "2026-11-25T13:18:47.208Z",
+      "__v": 0,
+      "studentWithdrawal": {
+        "allowed": true,
+        "reason": "",
+        "deadline": "2026-12-02T13:18:47.125Z"
+      }
+    }
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

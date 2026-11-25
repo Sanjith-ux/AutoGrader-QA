@@ -1,0 +1,10 @@
+{
+  "id": "M1-AUTH-02",
+  "actual": "L1 registered as Lecturer; returned to login with account-created message and no approval step.",
+  "status": "Passed",
+  "method": "Native Brave browser via CUA",
+  "timestampUTC": "2026-11-25T13:32:29.418Z",
+  "evidence": [
+    "M1-AUTH-02-lecturer-created.png"
+  ]
+}

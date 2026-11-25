@@ -1,0 +1,12 @@
+{
+  "id": "M1-LAB-25",
+  "run": "20261125T190120",
+  "actual": "L1 opened Edit for existing LAB, left Start 09:00 and changed End to 08:59. Save Changes displayed End time must be later than start time. Closed form without saving, refreshed schedule, then activated View: LAB retained original 09:00-10:00, D, Upcoming and capacity 20.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:58:13.678408+00:00",
+  "evidence": [
+    "M1-LAB-25-invalid-end-time.png",
+    "M1-LAB-25-original-time-retained.png"
+  ]
+}

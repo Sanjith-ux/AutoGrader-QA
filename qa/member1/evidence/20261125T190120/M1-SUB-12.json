@@ -1,0 +1,12 @@
+{
+  "id": "M1-SUB-12",
+  "run": "20261125T190120",
+  "actual": "S1 submitted report-valid.pdf labelled Report once. One A persisted after My Submissions refresh at 25 Nov 2026 20:08:30 Asia/Colombo, On time/Awaiting Review, all four compliance checks passed. Download control saved 329-byte report-valid.pdf; byte comparison matched fixture, and local Preview opened the downloaded one-page PDF. A identified by filename and timestamp; ID not exposed in UI.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:39:59.047702+00:00",
+  "evidence": [
+    "M1-SUB-12-attempt-A.png",
+    "M1-SUB-12-downloaded-pdf.png"
+  ]
+}

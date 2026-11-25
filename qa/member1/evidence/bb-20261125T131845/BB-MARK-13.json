@@ -1,0 +1,36 @@
+{
+  "id": "BB-MARK-13",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.155Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/assignments",
+  "input": {
+    "module": "EC4206",
+    "description": "Synthetic black-box boundary task",
+    "submissionRequirements": "Upload Report",
+    "deadline": "2026-12-02T13:18:47.125Z",
+    "totalMarks": false,
+    "allowedFileTypes": [
+      "PDF"
+    ],
+    "requiredFiles": [
+      "Report"
+    ],
+    "maxFileSizeMB": 5,
+    "lateSubmissionAllowed": false,
+    "status": "Draft",
+    "title": "BB-MARK-13 bb-20261125T131845"
+  },
+  "expectedStatus": 400,
+  "status": 400,
+  "response": {
+    "message": "Validation failed.",
+    "errors": [
+      "Total marks must be a whole number greater than zero."
+    ]
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

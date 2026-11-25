@@ -1,0 +1,30 @@
+{
+  "run": "20261125T190120",
+  "timestampUTC": "2026-11-25T15:00:11.088777+00:00",
+  "catalogue": "Original Section 3.2 manual cases",
+  "counts": {
+    "Passed": 25,
+    "Failed": 0,
+    "Blocked": 0,
+    "Not Executed": 0
+  },
+  "total": 25,
+  "additionalBlackBoxCounts": {
+    "total": 52,
+    "Passed": 52,
+    "Failed": 0,
+    "Blocked": 0,
+    "Not Executed": 0
+  },
+  "checks": {
+    "uniqueOriginalIDs": 25,
+    "csvColumns": 13,
+    "designFieldsUnchanged": true,
+    "allReferencedEvidenceExists": true,
+    "allCaseJSONStatusesMatchCSV": true,
+    "defectIDsBlank": true
+  },
+  "screenshotFormat": "Native CUA returned genuine JPEG bytes under the existing .png naming convention; both original and continued captures use this convention. No image content was fabricated or edited.",
+  "retainedFixtures": "MAIN Published; A Graded 0/100; B restored Awaiting Review; OVERDUE Published without attempts; LAB Upcoming 09:00-10:00; all synthetic history retained",
+  "procedureAdaptations": "See resume-environment.json and RBAC-22 API evidence; no unresolved browser blocker."
+}
