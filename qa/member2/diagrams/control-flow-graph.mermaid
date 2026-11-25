@@ -1,0 +1,26 @@
+flowchart TD
+    N1(["Node 1: Entry - checkCompliance(assignment, files, submittedAt)"]) --> N2{"Node 2: Is submittedAt <= assignment.deadline? (onTime)"}
+    N2 -- Yes (True) --> N3["Node 3: deadline.message = 'Submitted on or before the deadline.'"]
+    N2 -- No (False) --> N4["Node 4: deadline.message = 'Submitted after the deadline; marked late.'"]
+    N3 --> N5["Node 5: checks.deadline = { passed: onTime, message }"]
+    N4 --> N5
+    N5 --> N6{"Node 6: Do all files match allowedFileTypes? (files.every)"}
+    N6 -- Yes (True) --> N7["Node 7: checks.fileType.passed = true"]
+    N6 -- No (False) --> N8["Node 8: checks.fileType.passed = false"]
+    N7 --> N9["Node 9: Set fileType message: 'Accepted formats: ...'"]
+    N8 --> N9
+    N9 --> N10{"Node 10: Are all file sizes <= maxFileSizeMB? (files.every)"}
+    N10 -- Yes (True) --> N11["Node 11: checks.fileSize.passed = true"]
+    N10 -- No (False) --> N12["Node 12: checks.fileSize.passed = false"]
+    N11 --> N13["Node 13: Set fileSize message: 'Maximum X MB per file.'"]
+    N12 --> N13
+    N13 --> N14{"Node 14: Is missing.length === 0? (all required files attached)"}
+    N14 -- Yes (True) --> N15["Node 15: checks.requiredFiles.passed = true; 'All required attachment labels are present.'"]
+    N14 -- No (False) --> N16["Node 16: checks.requiredFiles.passed = false; 'Missing attachments: ...'"]
+    N15 --> N17["Node 17: Merge requiredFiles check into checks"]
+    N16 --> N17
+    N17 --> N18{"Node 18: Are all 4 checks passed? (Object.values(checks).every)"}
+    N18 -- Yes (True) --> N19["Node 19: overallPassed = true"]
+    N18 -- No (False) --> N20["Node 20: overallPassed = false"]
+    N19 --> N21(["Node 21: Exit - Return { passed, checks }"])
+    N20 --> N21
