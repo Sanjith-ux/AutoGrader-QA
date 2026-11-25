@@ -1,0 +1,12 @@
+{
+  "name": "labtrack-member3-qa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node run-api.mjs",
+    "coverage:prepare": "node prepare-lcov.mjs"
+  },
+  "devDependencies": {
+    "newman": "6.2.2"
+  }
+}

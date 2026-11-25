@@ -1,0 +1,411 @@
+{
+  "info": {
+    "name": "LabTrack EC4206 QA",
+    "description": "Ten API contract checks. Use synthetic users and an isolated local LabTrack API. Run in collection order. The login and creation requests populate runtime tokens and the assignment ID.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API-01 Health",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Service reports healthy\", () => pm.expect(body).to.deep.equal({ status: \"ok\" }));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-02 Lecturer login",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "noauth"
+        },
+        "url": "{{baseUrl}}/auth/login",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{lecturerEmail}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Authenticated lecturer account\", () => {",
+              "  pm.expect(body.user.role).to.equal(\"lecturer\");",
+              "  pm.expect(body.user.email).to.equal(pm.environment.get(\"lecturerEmail\"));",
+              "  pm.expect(body.user.id).to.match(/^[a-f0-9]{24}$/i);",
+              "  pm.expect(body.user).to.not.have.property(\"password\");",
+              "});",
+              "pm.test(\"JWT is returned\", () => pm.expect(body.token).to.be.a(\"string\").and.match(/^[\\w-]+\\.[\\w-]+\\.[\\w-]+$/));",
+              "if (pm.response.code === 200 && body.token) pm.collectionVariables.set(\"lecturerToken\", body.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-03 Lecturer profile",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{lecturerToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/auth/me"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Profile matches the logged-in lecturer\", () => {",
+              "  pm.expect(body.user.email).to.equal(pm.environment.get(\"lecturerEmail\"));",
+              "  pm.expect(body.user.role).to.equal(\"lecturer\");",
+              "  pm.expect(body.user).to.not.have.property(\"password\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-04 Reject zero total marks",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{lecturerToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/assignments",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"{{assignmentTitle}}\",\n  \"module\": \"EC4206\",\n  \"description\": \"Submit a PDF report.\",\n  \"deadline\": \"{{deadline}}\",\n  \"totalMarks\": 0,\n  \"allowedFileTypes\": [\n    \"PDF\"\n  ],\n  \"requiredFiles\": [\n    \"report.pdf\"\n  ],\n  \"maxFileSizeMB\": 10,\n  \"lateSubmissionAllowed\": false,\n  \"status\": \"Draft\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Response explains the marks constraint\", () => {",
+              "  pm.expect(body.message).to.equal(\"Validation failed.\");",
+              "  pm.expect(body.errors).to.deep.equal([\"Total marks must be a whole number greater than zero.\"]);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-05 Create draft assignment",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{lecturerToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/assignments",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"{{assignmentTitle}}\",\n  \"module\": \"EC4206\",\n  \"description\": \"Submit a PDF report.\",\n  \"deadline\": \"{{deadline}}\",\n  \"totalMarks\": 100,\n  \"allowedFileTypes\": [\n    \"PDF\"\n  ],\n  \"requiredFiles\": [\n    \"report.pdf\"\n  ],\n  \"maxFileSizeMB\": 10,\n  \"lateSubmissionAllowed\": false,\n  \"status\": \"Draft\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Draft is saved with the requested fields\", () => {",
+              "  pm.expect(body.assignment._id).to.match(/^[a-f0-9]{24}$/i);",
+              "  pm.expect(body.assignment.title).to.equal(pm.environment.get(\"assignmentTitle\"));",
+              "  pm.expect(body.assignment.status).to.equal(\"Draft\");",
+              "  pm.expect(body.assignment.totalMarks).to.equal(100);",
+              "});",
+              "if (pm.response.code === 201 && body.assignment?._id) pm.collectionVariables.set(\"assignmentId\", body.assignment._id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-06 Publish assignment",
+      "request": {
+        "method": "PATCH",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{lecturerToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/assignments/{{assignmentId}}",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Published\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"The same assignment is published\", () => {",
+              "  pm.expect(body.assignment._id).to.equal(pm.collectionVariables.get(\"assignmentId\"));",
+              "  pm.expect(body.assignment.status).to.equal(\"Published\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-07 Student login",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "noauth"
+        },
+        "url": "{{baseUrl}}/auth/login",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{studentEmail}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Authenticated student account\", () => {",
+              "  pm.expect(body.user.role).to.equal(\"student\");",
+              "  pm.expect(body.user.email).to.equal(pm.environment.get(\"studentEmail\"));",
+              "  pm.expect(body.user.id).to.match(/^[a-f0-9]{24}$/i);",
+              "  pm.expect(body.user).to.not.have.property(\"password\");",
+              "});",
+              "pm.test(\"JWT is returned\", () => pm.expect(body.token).to.be.a(\"string\").and.match(/^[\\w-]+\\.[\\w-]+\\.[\\w-]+$/));",
+              "if (pm.response.code === 200 && body.token) pm.collectionVariables.set(\"studentToken\", body.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-08 List published assignments",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{studentToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/assignments"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Student list includes the new published assignment\", () => {",
+              "  pm.expect(body.assignments).to.be.an(\"array\");",
+              "  const assignment = body.assignments.find((item) => item._id === pm.collectionVariables.get(\"assignmentId\"));",
+              "  pm.expect(assignment).to.include({ status: \"Published\", title: pm.environment.get(\"assignmentTitle\") });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-09 Read published assignment",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{studentToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/assignments/{{assignmentId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"Student view includes submission requirements\", () => {",
+              "  pm.expect(body.assignment._id).to.equal(pm.collectionVariables.get(\"assignmentId\"));",
+              "  pm.expect(body.assignment.allowedFileTypes).to.deep.equal([\"PDF\"]);",
+              "  pm.expect(body.assignment.requiredFiles).to.deep.equal([\"report.pdf\"]);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-10 List student submissions",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{studentToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/submissions?assignment={{assignmentId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"JSON content type\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^application\\/json\\b/i));",
+              "const body = pm.response.json();",
+              "pm.test(\"New student has no submissions for this assignment\", () => pm.expect(body.submissions).to.deep.equal([]));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
