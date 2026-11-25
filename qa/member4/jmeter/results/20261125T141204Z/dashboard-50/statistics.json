@@ -1,0 +1,34 @@
+{
+  "GET verified LabTrack endpoint" : {
+    "transaction" : "GET verified LabTrack endpoint",
+    "sampleCount" : 250,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2.3440000000000003,
+    "medianResTime" : 2.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 12.0,
+    "pct1ResTime" : 5.0,
+    "pct2ResTime" : 5.0,
+    "pct3ResTime" : 8.940000000000055,
+    "throughput" : 26.055237102657635,
+    "receivedKBytesPerSec" : 9.032821456487753,
+    "sentKBytesPerSec" : 9.643491076081292
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 250,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 2.3440000000000003,
+    "medianResTime" : 2.0,
+    "minResTime" : 0.0,
+    "maxResTime" : 12.0,
+    "pct1ResTime" : 5.0,
+    "pct2ResTime" : 5.0,
+    "pct3ResTime" : 8.940000000000055,
+    "throughput" : 26.055237102657635,
+    "receivedKBytesPerSec" : 9.032821456487753,
+    "sentKBytesPerSec" : 9.643491076081292
+  }
+}

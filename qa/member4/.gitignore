@@ -1,0 +1,7 @@
+# Member 4 only: avoid accidentally publishing secrets and raw logs.
+*.env
+*.token
+*.secret
+jmeter/results/**/jmeter-*.log
+# Raw JTLs require explicit security review before team publication.
+jmeter/results/**/*.jtl

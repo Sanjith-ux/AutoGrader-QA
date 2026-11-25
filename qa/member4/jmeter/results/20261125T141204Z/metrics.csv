@@ -1,0 +1,4 @@
+users,ramp_up_s,loops,samples,failed,mean_ms,min_ms,max_ms,p95_ms,requests_per_sec,errors_percent
+10,10,5,50,0,3.00,1.00,14.00,6.00,5.68,0.00
+25,10,5,125,0,2.42,0.00,11.00,5.00,13.31,0.00
+50,10,5,250,0,2.34,0.00,12.00,5.00,26.06,0.00

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="LabTrack local QA - parameterized API load" enabled="true">
+      <stringProp name="TestPlan.comments">Local QA only. Verify that the backend uses a disposable synthetic-data MongoDB. Use -Jqa.users=10/25/50, -Jqa.path=/verified/get/route, ramp 10 sec, loops 5. Do not point at production.</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults (loopback only via runner)" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">${__P(qa.host,127.0.0.1)}</stringProp>
+        <stringProp name="HTTPSampler.port">${__P(qa.port,5002)}</stringProp>
+        <stringProp name="HTTPSampler.protocol">http</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+        <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        <boolProp name="HTTPSampler.image_parser">false</boolProp>
+        <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load scenario - ${__P(qa.users,10)} virtual users" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${__P(qa.loops,5)}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(qa.users,10)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(qa.ramp,10)}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET verified LabTrack endpoint" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.path">${__P(qa.path,/api/assignments)}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout">5000</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">15000</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Optional bearer auth from LABTRACK_QA_TOKEN (never print)" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">labtrack-member4-qa-auth-v1</stringProp>
+            <stringProp name="script"><![CDATA[
+def hm = new org.apache.jmeter.protocol.http.control.HeaderManager()
+hm.setName('Ephemeral QA headers')
+hm.add(new org.apache.jmeter.protocol.http.control.Header('Accept', 'application/json'))
+def token = System.getenv('LABTRACK_QA_TOKEN')?.trim()
+if (token) {
+    hm.add(new org.apache.jmeter.protocol.http.control.Header('Authorization', 'Bearer ' + token))
+}
+sampler.setHeaderManager(hm)
+]]></stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Expected HTTP status" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="statusRegex">${__P(qa.expectedStatus,200)}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">Unexpected HTTP status: inspect route, auth and real API spec</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response body matches verified regex" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="bodyRegex">${__P(qa.bodyRegex,(?s).+)}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message">Unexpected or empty response body</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report (GUI review; CLI uses JTL)" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time><latency>true</latency><timestamp>true</timestamp><success>true</success>
+            <label>true</label><code>true</code><message>true</message><threadName>true</threadName>
+            <dataType>false</dataType><encoding>false</encoding><assertions>false</assertions>
+            <subresults>false</subresults><responseData>false</responseData><samplerData>false</samplerData>
+            <xml>false</xml><fieldNames>true</fieldNames><responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders><responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <bytes>true</bytes><sentBytes>true</sentBytes><url>false</url><threadCounts>true</threadCounts>
+            <idleTime>true</idleTime><connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report (GUI review; CLI uses JTL)" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time><latency>true</latency><timestamp>true</timestamp><success>true</success>
+            <label>true</label><code>true</code><message>true</message><threadName>true</threadName>
+            <dataType>false</dataType><encoding>false</encoding><assertions>false</assertions>
+            <subresults>false</subresults><responseData>false</responseData><samplerData>false</samplerData>
+            <xml>false</xml><fieldNames>true</fieldNames><responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders><responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <bytes>true</bytes><sentBytes>true</sentBytes><url>false</url><threadCounts>true</threadCounts>
+            <idleTime>true</idleTime><connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
