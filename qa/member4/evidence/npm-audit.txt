@@ -1,0 +1,15 @@
+# npm audit report
+
+mongoose  8.0.0 - 8.24.6
+Severity: high
+Mongoose: Connection-level sanitizeFilter not applied - https://github.com/advisories/GHSA-gg4r-jv3p-qx3c
+Mongoose: Discriminator key values matching inherited properties (e.g. __t: 'constructor') bypass schema casting and can poison collections - https://github.com/advisories/GHSA-wr5m-5jph-8m96
+Mongoose walks into inherited properties when hydrating, setting, and merging, allowing overwrites of built-in functions (denial of service) and shared schema state - https://github.com/advisories/GHSA-8332-j7wj-wjw4
+Mongoose: Prototype pollution via Schema.prototype.virtual() - https://github.com/advisories/GHSA-6972-9mcm-vhwj
+fix available via `npm audit fix`
+node_modules/mongoose
+
+1 high severity vulnerability
+
+To address all issues, run:
+  npm audit fix

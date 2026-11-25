@@ -1,0 +1,17 @@
+# 3.10 — Agile Testing and DevOps Reflection
+
+**Status: evidence-aware reflection.** This reflects source inspection, preparation and local JMeter execution by Member 4; it does not claim completed browser, security, CI/CD or SonarQube runs.
+
+Our EC4206 project, LabTrack – AutoGrader & Lab Submission Portal, uses a four-member parallel QA workflow. The group plan assigns work to separate Git branches and requires pull requests into the main branch after review. This supports Agile testing because quality work can proceed alongside implementation, but observations still need to be shared early and reproduced before they become defects.
+
+The repository contains backend tests for authentication, authorization, assignments and submissions, which illustrates how automated checks can make repeated behavior testable. Member 2's white-box/unit/BDD work and Member 3's API/CI responsibilities complement Member 4's exploratory performance, security and usability work. A CI/CD workflow should execute these repeatable checks on pushes and pull requests; no pipeline result is claimed here because none was supplied or executed by Member 4.
+
+Member 4's source inspection identified `GET /api/assignments` as an authenticated read-only workload and assignment creation as lecturer-only. In the isolated local JMeter run, all 425 samples passed after correcting a mistake in the original test assertions. The short run used a fresh synthetic database and does not establish production capacity. The OWASP tests are prepared to test student access against lecturer-only assignment operations and absent/invalid tokens, with no security conclusion asserted before execution. The usability checklist covers both roles, form feedback, dialogs and responsive viewports. Each conclusion must link to real evidence.
+
+GitHub Issues support collaboration by keeping every confirmed defect's severity, steps to reproduce, owner, root cause and status in one trackable place. During preparation, Member 4 found inconsistent default local ports in the checked-in frontend and backend source and recorded it as a draft issue, not a confirmed defect, until an isolated runtime reproduction is captured. The intended New → Assigned → Fixed → Verified → Closed process links Member 2's Red–Green work to independent verification by Member 4. SonarQube analysis under Member 3 can identify maintainability or security concerns and help prioritize improvements once genuine dashboard findings are available.
+
+### Challenges and lessons
+
+The concrete challenge encountered during preparation was configuration ambiguity: the backend code falls back to port 5001 while the frontend code falls back to port 5002. The project documentation resolves this by directing local setup to explicitly use `PORT=5002`; the draft issue records why matching defaults would reduce setup risk. A second challenge is evidence discipline: tokens, private database URIs and student data must not appear in JMeter files, screenshots or GitHub Issues, so the plan reads its bearer token from the local environment and requires masking. The final challenge remains to be recorded after execution: establish a disposable MongoDB environment, run each scenario, and distinguish observed behavior from expected behavior.
+
+**Do not assert fabricated performance improvements, pipeline passes, vulnerabilities, defect counts or SonarQube quality-gate results.**
