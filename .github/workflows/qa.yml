@@ -1,0 +1,94 @@
+name: LabTrack QA
+
+on:
+  push:
+    branches:
+      - main
+      - 'qa/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      mongo:
+        image: mongo:7.0
+        ports:
+          - 27017/tcp
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ping: 1})'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            backend/package-lock.json
+            FrontEnd/package-lock.json
+            qa/member3/package-lock.json
+
+      - name: Install dependencies
+        id: dependencies
+        run: |
+          npm ci --prefix backend
+          npm ci --prefix FrontEnd
+          npm ci --prefix qa/member3
+
+      - name: Frontend lint
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        run: npm --prefix FrontEnd run lint
+
+      - name: Frontend build
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        run: npm --prefix FrontEnd run build
+
+      - name: Backend tests and LCOV
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        id: backend
+        env:
+          MONGODB_TEST_URI: mongodb://127.0.0.1:${{ job.services.mongo.ports['27017'] }}/labtrack_test
+        run: bash qa/member3/test-with-coverage.sh backend
+
+      - name: Frontend tests and LCOV
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        id: frontend
+        run: bash qa/member3/test-with-coverage.sh FrontEnd
+
+      - name: Newman API collection
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        env:
+          MONGODB_API_TEST_URI: mongodb://127.0.0.1:${{ job.services.mongo.ports['27017'] }}/labtrack_api_test
+        run: npm --prefix qa/member3 test
+
+      - name: Prepare SonarQube LCOV
+        if: ${{ !cancelled() && steps.backend.outcome == 'success' && steps.frontend.outcome == 'success' }}
+        id: coverage
+        run: npm --prefix qa/member3 run coverage:prepare
+
+      - name: Upload LCOV reports
+        if: ${{ !cancelled() && steps.coverage.outcome == 'success' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: labtrack-lcov
+          path: qa/member3/results/*.lcov.info
+          if-no-files-found: error
+
+      - name: SonarQube Server analysis
+        if: ${{ success() && env.SONAR_HOST_URL != '' && env.SONAR_TOKEN != '' }}
+        uses: SonarSource/sonarqube-scan-action@c7ee0f9df90b7aa20e8dcf9695dcfe2e7da5b4f2 # v7
+        env:
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
