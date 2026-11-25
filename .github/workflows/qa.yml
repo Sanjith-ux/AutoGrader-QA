@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: labtrack-lcov
-          path: qa/member3/results/*.lcov.info
+          path: qa/member3/results/*lcov.info
           if-no-files-found: error
 
       - name: SonarQube Server analysis
