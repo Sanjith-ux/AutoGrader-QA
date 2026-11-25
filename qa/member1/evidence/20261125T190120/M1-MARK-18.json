@@ -1,0 +1,12 @@
+{
+  "id": "M1-MARK-18",
+  "run": "20261125T190120",
+  "actual": "On A, replaced saved draft mark 60 with 101 and clicked Publish Feedback. Form displayed Enter a mark from 0 to 100. Refresh and reopen retrieved draft 60 and Synthetic draft - private, still Under Review; no grade published.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:46:33.903399+00:00",
+  "evidence": [
+    "M1-MARK-18-over-maximum.png",
+    "M1-MARK-18-draft-retained.png"
+  ]
+}

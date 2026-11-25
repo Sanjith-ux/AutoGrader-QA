@@ -1,0 +1,13 @@
+{
+  "id": "M1-RBAC-22",
+  "run": "20261125T190120",
+  "actual": "S1 direct /lecturer/assignments/create navigation redirected to /student-dashboard. One valid guide payload POST /api/assignments using S1-only token returned HTTP 403: You do not have permission to access this resource. L1 All assignments search for exact QA Forbidden 20261125T190120 found none. Safari inspector unavailable: routine local HTTP sign-in supplied S1 token privately (documented procedure adaptation); identity/student role verified, no L1 token used, temporary credentials cleared.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:53:09.040745+00:00",
+  "evidence": [
+    "M1-RBAC-22-student-redirect.png",
+    "M1-RBAC-22-api-403.json",
+    "M1-RBAC-22-no-forbidden-assignment.png"
+  ]
+}

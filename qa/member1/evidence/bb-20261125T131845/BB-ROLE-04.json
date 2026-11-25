@@ -1,0 +1,29 @@
+{
+  "id": "BB-ROLE-04",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:46.717Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:46 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/register",
+  "input": {
+    "name": "QA Black Box BB-ROLE-04",
+    "email": "bb-role-04.bb-20261125T131845@example.test",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 20,
+      "utf8Bytes": 20
+    }
+  },
+  "expectedStatus": 400,
+  "status": 400,
+  "response": {
+    "message": "Validation failed.",
+    "errors": [
+      "Role must be either student or lecturer."
+    ]
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

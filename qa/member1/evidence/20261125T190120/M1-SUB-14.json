@@ -1,0 +1,11 @@
+{
+  "id": "M1-SUB-14",
+  "run": "20261125T190120",
+  "actual": "Starting MAIN count 1. S1 selected 38-byte report-fake.pdf with Report and submitted; application returned File contents do not match a supported format: report-fake.pdf. My Submissions refresh retained only A at 20:08:30 with accessible file and passed checks; count remained 1. No HTTP status inspected.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:41:46.103592+00:00",
+  "evidence": [
+    "M1-SUB-14-content-mismatch.png"
+  ]
+}

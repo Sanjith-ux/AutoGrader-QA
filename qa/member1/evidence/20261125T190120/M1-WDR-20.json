@@ -1,0 +1,12 @@
+{
+  "id": "M1-WDR-20",
+  "run": "20261125T190120",
+  "actual": "S1 selected B (report-second.pdf, 20:12:13), Awaiting Review without marks, before F; withdrew with Synthetic attempt withdrawn for QA. Refresh retained Withdrawn, reason and file. No repeat withdrawal or student restore action; UI says only owning lecturer can restore. Downloaded report-second.pdf matched original 329-byte fixture. Selecting A separately retained Graded 0 / 100 and published feedback.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:47:32.494961+00:00",
+  "evidence": [
+    "M1-WDR-20-withdrawn-B.png",
+    "M1-WDR-20-A-grade-retained.png"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "BB-PW-10",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:46.514Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:46 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/register",
+  "input": {
+    "name": "QA Black Box BB-PW-10",
+    "email": "bb-pw-10.bb-20261125T131845@example.test",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 37,
+      "utf8Bytes": 74
+    },
+    "role": "student"
+  },
+  "expectedStatus": 400,
+  "status": 400,
+  "response": {
+    "message": "Validation failed.",
+    "errors": [
+      "Password must be 72 bytes or fewer."
+    ]
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "M1-ASG-11",
+  "run": "20261125T190120",
+  "actual": "With A/B history present, L1 clicked Delete on MAIN only and accepted its named confirmation. Application refused: Assignments with submissions cannot be deleted. Close the assignment instead. Refresh retained MAIN Published; opening its Submissions / history showed B report-second.pdf Awaiting Review and A report-valid.pdf Graded 0 / 100, preserving both file records and history.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:50:12.363039+00:00",
+  "evidence": [
+    "M1-ASG-11-delete-refused.png",
+    "M1-ASG-11-history-retained.png"
+  ]
+}

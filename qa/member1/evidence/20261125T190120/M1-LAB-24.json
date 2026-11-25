@@ -1,0 +1,12 @@
+{
+  "id": "M1-LAB-24",
+  "run": "20261125T190120",
+  "actual": "L1 created QA Lab 20261125T190120 with EC4206, D=2 Dec 2026, 09:00-10:00, room QA Lab, capacity 20, Bring synthetic report, Follow lab instructions, Upcoming. Refresh retained schedule row; returned to L1 and activated View using keyboard after coordinate tool failures. Details retained all values and 0 enrolled of 20 (no real enrollment assumed). S1 Lab Schedule selected LAB and displayed matching title/module/date/time/room/instructions/safety.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:57:46.293135+00:00",
+  "evidence": [
+    "M1-LAB-24-lecturer-session.png",
+    "M1-LAB-24-student-session.png"
+  ]
+}

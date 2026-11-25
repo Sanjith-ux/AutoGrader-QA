@@ -1,0 +1,57 @@
+{
+  "id": "BB-MARK-04",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.139Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/assignments",
+  "input": {
+    "module": "EC4206",
+    "description": "Synthetic black-box boundary task",
+    "submissionRequirements": "Upload Report",
+    "deadline": "2026-12-02T13:18:47.125Z",
+    "totalMarks": 1,
+    "allowedFileTypes": [
+      "PDF"
+    ],
+    "requiredFiles": [
+      "Report"
+    ],
+    "maxFileSizeMB": 5,
+    "lateSubmissionAllowed": false,
+    "status": "Draft",
+    "title": "BB-MARK-04 bb-20261125T131845"
+  },
+  "expectedStatus": 201,
+  "status": 201,
+  "response": {
+    "assignment": {
+      "_id": "6b06e03704f568329bd47a79",
+      "title": "BB-MARK-04 bb-20261125T131845",
+      "module": "EC4206",
+      "description": "Synthetic black-box boundary task",
+      "deadline": "2026-12-02T13:18:47.125Z",
+      "submissionRequirements": "Upload Report",
+      "totalMarks": 1,
+      "allowedFileTypes": [
+        "PDF"
+      ],
+      "requiredFiles": [
+        "Report"
+      ],
+      "maxFileSizeMB": 5,
+      "lateSubmissionAllowed": false,
+      "status": "Draft",
+      "lecturer": {
+        "_id": "6b06e03604f568329bd47a6d",
+        "name": "QA Black Box BB-ROLE-01"
+      },
+      "createdAt": "2026-11-25T13:18:47.140Z",
+      "updatedAt": "2026-11-25T13:18:47.140Z",
+      "__v": 0
+    }
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

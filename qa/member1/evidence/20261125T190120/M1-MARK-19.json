@@ -1,0 +1,12 @@
+{
+  "id": "M1-MARK-19",
+  "run": "20261125T190120",
+  "actual": "L1 published A with 0 and Synthetic published feedback - zero is valid. S1 refreshed Marks & Feedback via fresh login/navigation: A at 20:08:30 selected as Graded, 0 / 100, exact published feedback. B at 20:12:13 selected separately remained Under Review without mark or published feedback. Summary showed 1 graded assignment and explicit 0% average; pending B did not hide A.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:47:03.743019+00:00",
+  "evidence": [
+    "M1-MARK-19-pending-B.png",
+    "M1-MARK-19-published-zero.png"
+  ]
+}

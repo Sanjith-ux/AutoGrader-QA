@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-11-25T13:31:20.288Z",
+  "database": "labtrack_qa_member1",
+  "mongoPort": 27028,
+  "dbPath": "/Users/sanjithab/Desktop/AutoGrader & lab Submissiton Portal /qa/member1/runtime/mongodb",
+  "health": 200,
+  "frontend": 200,
+  "rateLimitProbe": {
+    "method": "POST",
+    "url": "http://127.0.0.1:5002/api/auth/login",
+    "status": 429,
+    "retryAfter": "147",
+    "tokenReturned": false,
+    "message": "Too many failed sign-in attempts. Please try again later."
+  }
+}

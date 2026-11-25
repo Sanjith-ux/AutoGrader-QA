@@ -1,0 +1,14 @@
+{
+  "id": "M1-RBAC-23",
+  "run": "20261125T190120",
+  "actual": "Registered L2 through Lecturer registration as prerequisite, then signed in as L2. All assignments list empty; direct MAIN edit URL displayed Unable to load this assignment Assignment not found., with no editable MAIN data. Returned to L1: MAIN remained Published; owner edit form retained original title, revised description, F, 100 marks, PDF/Report/5 MB and late disabled. No data edited.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:54:19.447194+00:00",
+  "evidence": [
+    "fixture-L2-created.png",
+    "M1-RBAC-23-L2-list.png",
+    "M1-RBAC-23-other-owner-denied-r2.png",
+    "M1-RBAC-23-owner-unchanged.png"
+  ]
+}

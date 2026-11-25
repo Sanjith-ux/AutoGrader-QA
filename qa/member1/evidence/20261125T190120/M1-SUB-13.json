@@ -1,0 +1,12 @@
+{
+  "id": "M1-SUB-13",
+  "run": "20261125T190120",
+  "actual": "Starting MAIN count 1. After reopening Safari picker, selected existing 5242881-byte report-oversize.pdf with Report label. UI displayed One or more files exceed 5 MB. Submit another attempt disabled. My Submissions navigation and refresh retained exactly A (report-valid.pdf, 20:08:30); count 1. UI coverage only; no server size request sent. Initial picker observation retained separately.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:41:17.097308+00:00",
+  "evidence": [
+    "M1-SUB-13-oversize-blocked.png",
+    "M1-SUB-13-picker-blocked.png"
+  ]
+}

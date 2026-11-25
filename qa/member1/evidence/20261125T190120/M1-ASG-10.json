@@ -1,0 +1,11 @@
+{
+  "id": "M1-ASG-10",
+  "run": "20261125T190120",
+  "actual": "L1 submitted identical MAIN title and EC4206 module with valid BASE values. Form displayed You already have an assignment with this title in this module. Cancel returned to All list with exactly one MAIN, still Published.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:36:50.350121+00:00",
+  "evidence": [
+    "M1-ASG-10-duplicate-assignment.png"
+  ]
+}

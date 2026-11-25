@@ -1,0 +1,23 @@
+{
+  "id": "BB-FILE-03",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.211Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/submissions/assignments/6b06e03704f568329bd47aad",
+  "input": {
+    "fileName": "BB-FILE-03.pdf",
+    "bytes": 5242881,
+    "content": "existing synthetic PDF padded with spaces",
+    "attachment": "Report",
+    "configuredLimitBytes": 5242880
+  },
+  "expectedStatus": 413,
+  "status": 413,
+  "response": {
+    "message": "A file exceeds the assignment size limit."
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}

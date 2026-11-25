@@ -1,0 +1,11 @@
+{
+  "id": "M1-ASG-09",
+  "run": "20261125T190120",
+  "actual": "L1 edited MAIN description to Synthetic QA report task - revised, saved Draft, then Publish changed status to Published. S1 reopened Assignments and MAIN details showing revised description, deadline F, 100 marks, PDF only, Report required and 5 MB each. MAIN_ID=6b06f20604f568329bd47b1a.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:36:16.098035+00:00",
+  "evidence": [
+    "M1-ASG-09-published-details.png"
+  ]
+}

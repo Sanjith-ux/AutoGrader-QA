@@ -1,0 +1,12 @@
+{
+  "id": "M1-SUB-15",
+  "run": "20261125T190120",
+  "actual": "S1 explicitly selected Supporting attachment for report-second.pdf. B saved at 25 Nov 2026 20:12:13 Asia/Colombo as Awaiting Review with overall Failed, missing Report; deadline, format and size passed. Refreshed history showed exactly two attempts. Selecting A by report-valid.pdf and 20:08:30 retained original file and all checks passed. B ID not exposed in UI.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:42:42.400469+00:00",
+  "evidence": [
+    "M1-SUB-15-missing-label.png",
+    "M1-SUB-15-two-attempts.png"
+  ]
+}

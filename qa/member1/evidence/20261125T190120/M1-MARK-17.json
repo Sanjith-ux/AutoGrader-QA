@@ -1,0 +1,13 @@
+{
+  "id": "M1-MARK-17",
+  "run": "20261125T190120",
+  "actual": "L1 reviewed A (report-valid.pdf at 20:08:30), saved mark 60 and Synthetic draft - private. Refresh and reopen retrieved 60/private feedback, Under Review. S1 My Submissions selected A: no available mark or published feedback. Marks & Feedback selected A: Under Review, mark dash, review-pending message and 0 assignments graded; neither 60 nor private text exposed.",
+  "status": "Passed",
+  "method": "Native Safari browser via CUA",
+  "timestampUTC": "2026-11-25T14:45:56.184866+00:00",
+  "evidence": [
+    "M1-MARK-17-lecturer-draft.png",
+    "M1-MARK-17-student-submission-private.png",
+    "M1-MARK-17-student-private.png"
+  ]
+}

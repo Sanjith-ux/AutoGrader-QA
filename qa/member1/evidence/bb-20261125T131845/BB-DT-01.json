@@ -1,0 +1,29 @@
+{
+  "id": "BB-DT-01",
+  "run": "bb-20261125T131845",
+  "channel": "Direct API (Node fetch; no application internals invoked)",
+  "startedUTC": "2026-11-25T13:18:47.222Z",
+  "localTime": "Wednesday, 25 November 2026 at 18:48:47 GMT+5:30",
+  "method": "POST",
+  "url": "http://127.0.0.1:5002/api/auth/login",
+  "input": {
+    "email": "not-an-email",
+    "password": {
+      "redacted": true,
+      "type": "string",
+      "characters": 0,
+      "utf8Bytes": 0
+    }
+  },
+  "expectedStatus": 400,
+  "status": 400,
+  "response": {
+    "message": "Validation failed.",
+    "errors": [
+      "Enter a valid email address.",
+      "Password is required."
+    ]
+  },
+  "retryAfter": null,
+  "result": "Passed"
+}
